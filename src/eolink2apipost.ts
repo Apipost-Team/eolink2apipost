@@ -144,13 +144,14 @@ class eolink2apipost {
       let target;
       if (item.hasOwnProperty('apiList') && item.hasOwnProperty('groupName')) {
         target = root.createNewFolder(item);
+        // 存在子目录
+        if (item.hasOwnProperty('apiGroupChildList') && Object.prototype.toString.call(item.apiGroupChildList) === '[object Array]') {
+          root.handleApiAndFolder(item.apiGroupChildList, target);
+        }
+        // 处理接口数组
         root.handleApiAndFolder(item.apiList, target);
       } else {
         target = root.createNewApi(item);
-      }
-      // 存在子目录
-      if(target.hasOwnProperty('apiGroupChildList') && Object.prototype.toString.call(target.apiGroupChildList) === '[object Array]'){
-        root.handleApiAndFolder(item.apiGroupChildList, target);
       }
       if (parent && parent != null) {
         parent.children.push(target);
