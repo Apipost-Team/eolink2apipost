@@ -148,6 +148,10 @@ class eolink2apipost {
       } else {
         target = root.createNewApi(item);
       }
+      // 存在子目录
+      if(target.hasOwnProperty('apiGroupChildList') && Object.prototype.toString.call(target.apiGroupChildList) === '[object Array]'){
+        root.handleApiAndFolder(item.apiGroupChildList, target);
+      }
       if (parent && parent != null) {
         parent.children.push(target);
       } else {
