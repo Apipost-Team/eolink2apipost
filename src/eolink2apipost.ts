@@ -161,13 +161,13 @@ class eolink2apipost {
     }
   }
   handleApiCollection(json: any) {
-    if (!json.hasOwnProperty('apiGroupList')) {
-      return;
+    if (json.hasOwnProperty('apiGroupList') || json.hasOwnProperty('apiList')) {
+        let apiGroupList = json.apiGroupList || json.apiList;
+           if (apiGroupList instanceof Array && apiGroupList.length > 0) {
+               this.handleApiAndFolder(apiGroupList, null);
+        }
     }
-    let apiGroupList = json.apiGroupList;
-    if (apiGroupList instanceof Array && apiGroupList.length > 0) {
-      this.handleApiAndFolder(apiGroupList, null);
-    }
+
   }
   convert(json: object) {
     var validationResult = this.validate(json);

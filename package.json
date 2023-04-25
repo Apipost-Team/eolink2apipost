@@ -1,6 +1,6 @@
 {
   "name": "eolink2apipost",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "eolink2apipost",
   "main": "dist/index.js",
   "files": [
